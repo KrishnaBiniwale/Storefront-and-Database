@@ -8,11 +8,7 @@
 #include "user.h"
 #include "product_parser.h"
 
-/**
- * Interface for all section parsers_
- *  A section parser parses everything between
- *  <section> ... </section> in the database file
- */
+
 class SectionParser {
 public:
     virtual ~SectionParser() { }
@@ -22,8 +18,7 @@ public:
      * Sets errorMsg with a descriptive message upon an error
      * Returns true if an error occurred.
      */
-    virtual bool parse(std::istream& is, DataStore& ds,
-                       int& lineno, std::string& errorMsg) = 0;
+    virtual bool parse(std::istream& is, DataStore& ds, int& lineno, std::string& errorMsg) = 0;
     /**
      * Reports how many items were parsed
      */
@@ -44,8 +39,7 @@ public:
      *  when a section with sectionName is found in the
      *  database
      */
-    void addSectionParser(const std::string& sectionName,
-                          SectionParser*         parser);
+    void addSectionParser(const std::string& sectionName, SectionParser* parser);
     /**
      *  Registers a section parser that will be invoked
      *  when a section with sectionName is found in the
