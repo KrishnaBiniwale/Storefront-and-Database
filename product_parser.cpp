@@ -179,10 +179,7 @@ std::string ProductClothingParser::categoryID()
 }
 
 
-/**
- * Your job to fill in the code to create a new clothing product
- * using the data members in this class and the parent ProductParser class
- */
+
 Product* ProductClothingParser::makeProduct()
 {
     Product* p = new Clothing(prodName_, price_, qty_, size_, brand_);
