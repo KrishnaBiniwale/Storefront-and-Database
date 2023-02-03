@@ -25,12 +25,9 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-
     MyDataStore ds;
-
-
-
-    // Instantiate the individual section and product parsers we want
+    
+    // Instantiate the individual section and product parsers
     ProductSectionParser* productSectionParser = new ProductSectionParser;
     productSectionParser->addProductParser(new ProductBookParser);
     productSectionParser->addProductParser(new ProductClothingParser);
@@ -42,7 +39,7 @@ int main(int argc, char* argv[])
     parser.addSectionParser("products", productSectionParser);
     parser.addSectionParser("users", userSectionParser);
 
-    // Now parse the database to populate the DataStore
+    // Parse the database to populate the DataStore
     if( parser.parse(argv[1], ds) ) {
         cerr << "Error parsing!" << endl;
         return 1;
@@ -76,8 +73,7 @@ int main(int argc, char* argv[])
                 }
                 hits = ds.search(terms, 0);
                 displayProducts(hits);
-            }
-            else if ( cmd == "OR" ) {
+            } else if ( cmd == "OR" ) {
                 string term;
                 vector<string> terms;
                 while(ss >> term) {
@@ -86,8 +82,7 @@ int main(int argc, char* argv[])
                 }
                 hits = ds.search(terms, 1);
                 displayProducts(hits);
-            }
-            else if ( cmd == "QUIT") {
+            } else if ( cmd == "QUIT") {
                 string filename;
                 if(ss >> filename) {
                     ofstream ofile(filename.c_str());
@@ -95,8 +90,7 @@ int main(int argc, char* argv[])
                     ofile.close();
                 }
                 done = true;
-            }
-            else if (cmd == "ADD") {
+            } else if (cmd == "ADD") {
                 string username;
                 ss >> username;
                 size_t search_hit_number;
@@ -106,22 +100,15 @@ int main(int argc, char* argv[])
                 } else {
                     ds.addToCart(username, hits[search_hit_number-1]);
                 }
-            }
-            else if (cmd == "VIEWCART") {
+            } else if (cmd == "VIEWCART") {
                 string username;
                 ss >> username;
                 ds.viewCart(username);
-            }
-            else if (cmd == "BUYCART") {
+            } else if (cmd == "BUYCART") {
                 string username;
                 ss >> username;
                 ds.buyCart(username);
-            }
-
-
-
-
-            else {
+            } else {
                 cout << "Unknown command" << endl;
             }
         }

@@ -10,7 +10,7 @@ Book::Book(const std::string name, double price, int qty, const std::string isbn
 
 Book::~Book()
 {
-
+  
 }
 
 std::set<std::string> Book::keywords() const {
