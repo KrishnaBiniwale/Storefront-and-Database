@@ -3,9 +3,7 @@
 #include <iostream>
 #include <string>
 
-/**
- * Implements User functionality and information storage
- */
+// Implements User functionality and information storage
 class User {
 public:
     User();
