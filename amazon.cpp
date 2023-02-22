@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
     MyDataStore ds;
 
-    // Instantiate the individual section and product parsers
+    // Instantiate the individual section and product parsers we want
     ProductSectionParser *productSectionParser = new ProductSectionParser;
     productSectionParser->addProductParser(new ProductBookParser);
     productSectionParser->addProductParser(new ProductClothingParser);
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     parser.addSectionParser("products", productSectionParser);
     parser.addSectionParser("users", userSectionParser);
 
-    // Parse the database to populate the DataStore
+    // Now parse the database to populate the DataStore
     if (parser.parse(argv[1], ds))
     {
         cerr << "Error parsing!" << endl;

@@ -27,8 +27,7 @@ DBParser::~DBParser()
         delete it->second;
     }
 }
-void DBParser::addSectionParser(const std::string& sectionName,
-                                SectionParser*     parser)
+void DBParser::addSectionParser(const std::string& sectionName, SectionParser* parser)
 {
     parsers_.insert(make_pair(sectionName, parser));
 }
@@ -125,11 +124,7 @@ void ProductSectionParser::addProductParser(ProductParser* p)
 }
 
 
-bool ProductSectionParser::parse(
-    std::istream& is,
-    DataStore& ds,
-    int& lineno,
-    std::string& errorMsg)
+bool ProductSectionParser::parse(std::istream& is, DataStore& ds, int& lineno, std::string& errorMsg)
 {
     string line;
     while(getline(is, line)) {
@@ -156,10 +151,7 @@ bool ProductSectionParser::parse(
 }
 
 
-Product* ProductSectionParser::parseProduct(const string& category,
-        istream& is,
-        int& lineno,
-        std::string& errorMsg)
+Product* ProductSectionParser::parseProduct(const string& category, istream& is, int& lineno, std::string& errorMsg)
 {
     bool error = false;
     map<string,ProductParser*>::iterator it = prodParsers_.find(category);
@@ -183,11 +175,7 @@ UserSectionParser::UserSectionParser()
 {
     numRead_ = 0;
 }
-bool UserSectionParser::parse(
-    std::istream& is,
-    DataStore& ds,
-    int& lineno,
-    std::string& errorMsg)
+bool UserSectionParser::parse(std::istream& is, DataStore& ds, int& lineno, std::string& errorMsg)
 {
     string line;
     while(getline(is, line)) {
@@ -204,10 +192,7 @@ bool UserSectionParser::parse(
     }
     return false;
 }
-User* UserSectionParser::parseUser(
-    std::istream& is,
-    DataStore& ds,
-    std::string& errorMsg)
+User* UserSectionParser::parseUser(std::istream& is, DataStore& ds, std::string& errorMsg)
 {
     string username;
     double balance;

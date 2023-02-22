@@ -11,44 +11,20 @@ public:
 
     virtual ~ProductParser();
 
-    /**
-     * Parses product info from the given input stream
-     */
-    Product* parse(std::string category,
-                   std::istream& is,
-                   bool& error,
-                   std::string& errorMsg,
-                   int& lineno);
+    // Parses product info from the given input stream
+    Product* parse(std::string category, std::istream& is, bool& error, std::string& errorMsg, int& lineno);
 
-    /**
-     * Returns the product category for this parser
-     */
+    // Returns the product category for this parser
     virtual std::string categoryID() = 0;
 
 protected:
-    /**
-     * Parses the common data members of a product
-     */
-    void parseCommonProduct(std::istream& is,
-                            bool& error,
-                            std::string& errorMsg,
-                            int& lineno);
+    // Parses the common data members of a product
+    void parseCommonProduct(std::istream& is, bool& error, std::string& errorMsg, int& lineno);
 
-    /**
-     * Parses the unique data members of a specific product type
-     *   and allocates a specific Product object
-     */
-    virtual Product* parseSpecificProduct(std::string category,
-                                          std::istream& is,
-                                          bool& error,
-                                          std::string& errorMsg,
-                                          int& lineno) = 0;
+    // Parses the unique data members of a specific product type and allocates a specific Product object
+    virtual Product* parseSpecificProduct(std::string category, std::istream& is, bool& error, std::string& errorMsg, int& lineno) = 0;
 
-
-    /**
-     * Dynamically allocates a specific product type from the data
-     *  parsed and stored in the specific product parser
-     */
+    // Dynamically allocates a specific product type from the data parsed and stored in the specific product parser
     virtual Product* makeProduct() = 0;
 
     std::string prodName_;
@@ -62,11 +38,7 @@ class ProductBookParser : public ProductParser
 {
 public:
     ProductBookParser();
-    Product* parseSpecificProduct(std::string category,
-                                  std::istream& is,
-                                  bool& error,
-                                  std::string& errorMsg,
-                                  int& lineno);
+    Product* parseSpecificProduct(std::string category, std::istream& is, bool& error, std::string& errorMsg, int& lineno);
 
     std::string categoryID();
 
@@ -83,11 +55,7 @@ class ProductClothingParser : public ProductParser
 {
 public:
     ProductClothingParser();
-    Product* parseSpecificProduct(std::string category,
-                                  std::istream& is,
-                                  bool& error,
-                                  std::string& errorMsg,
-                                  int& lineno);
+    Product* parseSpecificProduct(std::string category, std::istream& is, bool& error, std::string& errorMsg, int& lineno);
 
     std::string categoryID();
 
@@ -104,11 +72,7 @@ class ProductMovieParser : public ProductParser
 {
 public:
     ProductMovieParser();
-    Product* parseSpecificProduct(std::string category,
-                                  std::istream& is,
-                                  bool& error,
-                                  std::string& errorMsg,
-                                  int& lineno);
+    Product* parseSpecificProduct(std::string category, std::istream& is, bool& error, std::string& errorMsg, int& lineno);
 
     std::string categoryID();
 
