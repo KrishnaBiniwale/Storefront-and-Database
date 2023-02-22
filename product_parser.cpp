@@ -15,11 +15,7 @@ ProductParser::~ProductParser()
 {
 }
 
-Product *ProductParser::parse(string category,
-                              istream &is,
-                              bool &error,
-                              string &errorMsg,
-                              int &lineno)
+Product *ProductParser::parse(string category, istream &is, bool &error, string &errorMsg, int &lineno)
 {
 
     parseCommonProduct(is, error, errorMsg, lineno);
@@ -28,10 +24,7 @@ Product *ProductParser::parse(string category,
     return parseSpecificProduct(category, is, error, errorMsg, lineno);
 }
 
-void ProductParser::parseCommonProduct(std::istream &is,
-                                       bool &error,
-                                       string &errorMsg,
-                                       int &lineno)
+void ProductParser::parseCommonProduct(std::istream &is, bool &error, string &errorMsg, int &lineno)
 
 {
     string myline;
@@ -85,11 +78,7 @@ ProductBookParser::ProductBookParser() : ProductParser()
 {
 }
 
-Product *ProductBookParser::parseSpecificProduct(std::string category,
-                                                 std::istream &is,
-                                                 bool &error,
-                                                 std::string &errorMsg,
-                                                 int &lineno)
+Product *ProductBookParser::parseSpecificProduct(std::string category, std::istream &is, bool &error, std::string &errorMsg, int &lineno)
 {
     string myline;
     getline(is, myline);
@@ -126,10 +115,6 @@ std::string ProductBookParser::categoryID()
     return "book";
 }
 
-/**
- * Your job to fill in the code to create a new book product
- * using the data members in this class and the parent ProductParser class
- */
 Product *ProductBookParser::makeProduct()
 {
     Product *p = new Book(prodName_, price_, qty_, isbn_, author_);
@@ -187,11 +172,7 @@ ProductMovieParser::ProductMovieParser()
 {
 }
 
-Product *ProductMovieParser::parseSpecificProduct(std::string category,
-                                                  std::istream &is,
-                                                  bool &error,
-                                                  std::string &errorMsg,
-                                                  int &lineno)
+Product *ProductMovieParser::parseSpecificProduct(std::string category, std::istream &is, bool &error, std::string &errorMsg, int &lineno)
 {
     string myline;
     getline(is, myline);
@@ -230,10 +211,6 @@ std::string ProductMovieParser::categoryID()
     return "movie";
 }
 
-/**
- * Your job to fill in the code to create a new movie product
- * using the data members in this class and the parent ProductParser class
- */
 Product *ProductMovieParser::makeProduct()
 {
     Product *p = new Movie(prodName_, price_, qty_, genre_, rating_);
